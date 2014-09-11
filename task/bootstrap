@@ -1,0 +1,11 @@
+#!/bin/bash
+
+BUILD="_build"
+
+lsc -o $BUILD/task -cw task/*.ls &
+lsc -o $BUILD -cw *.json.ls &
+
+while read
+do
+  :
+done
