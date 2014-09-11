@@ -4,33 +4,27 @@
 window.log = -> console.log ...&
 
 const FEET-PER-MILE    = 5280ft
-const EARTH-RADIUS     = 4000miles
+const EARTH-RADIUS     = 3959miles
 const RADIANS-PER-MILE = 1 / EARTH-RADIUS # the angle subtended at earth's center per mile along circumference
 
-$ \input .on \keypress, ->
-  return unless it.key is \Enter
-  calculate!
-
+$ \input .on \keypress, -> calculate! if it.key is \Enter
 $ \#btnCalculate .on \click, calculate
 
 function calculate
-  height =
-    eye: get-val \txtEyeHeight
-  dist =
-    target: get-val \txtTargetDist
-    horiz : get-horizon-distance height.eye
+  h0 = get-val \h0
+  d0 = get-val \d0
+  d1 = get-horizon-distance h0
 
-  $ \#horizonDist        .text dist.horiz
-  $ \#targetHiddenHeight .text get-target-hidden-height dist
+  $ \#d1 .text d1
+  $ \#h1 .text get-target-hidden-height d0, d1
 
-function get-horizon-distance eye-height
-  r-vert = EARTH-RADIUS - ft-to-miles eye-height
+function get-horizon-distance h0
+  r-vert = EARTH-RADIUS - ft-to-miles h0
   theta  = Math.acos r-vert / EARTH-RADIUS
   theta / RADIANS-PER-MILE
 
-function get-target-hidden-height dist
-  dist.h2t = dist.target - dist.horiz
-  rads = dist.h2t * RADIANS-PER-MILE
+function get-target-hidden-height d0, d1
+  rads = (d1 - d0) * RADIANS-PER-MILE
   r-vert = EARTH-RADIUS * Math.cos rads
   (EARTH-RADIUS - r-vert) * FEET-PER-MILE
 
