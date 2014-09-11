@@ -1,0 +1,21 @@
+mixin field-label(name, label, label_2)
+  - var label = label || name
+  .form-group
+    label(for=name).control-label.col-sm-3 #{label}
+    .col-sm-3
+      block
+    label.control-label #{label_2}
+
+mixin field-input(type, name, value, label, label_2, placeholder)
+  +field-label(name, label, label_2)
+    input(type=type, id=name, name=name, value=value, placeholder=placeholder).form-control
+    block
+
+mixin field-static(name, label, label_2)
+  +field-label(name, label, label_2)
+    .col-sm-8
+      p(id=name).form-control-static
+
+mixin field-text(name, value, label, label_2, placeholder)
+  +field-input('text', name, value, label, label_2, placeholder)
+    block

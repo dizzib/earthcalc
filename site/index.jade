@@ -1,0 +1,20 @@
+include ./lib/_form
+
+html
+  head
+    title Earth Calculator
+    link(rel='stylesheet', href='lib-3p/bootstrap-3.2.0-dist/css/bootstrap.min.css')
+    link(rel='stylesheet', href='lib-3p/bootstrap-3.2.0-dist/css/bootstrap-theme.min.css')
+    link(rel='stylesheet', href='lib/form.css')
+    script(type='text/javascript', src='lib-3p/zepto.min.js')
+body
+  h1 Earth Calculator
+  form.form-horizontal
+    +field-text('txtEyeHeight', 10, 'Eye height', 'ft')
+    +field-text('txtTargetDist', 30, 'Target distance', 'miles')
+    .col-sm-offset-3
+      button(type='button', id='btnCalculate').btn.btn-primary Calculate
+  form.form-horizontal.well
+    +field-static('horizonDist', 'Horizon distance', 'miles')
+    +field-static('targetHiddenHeight', 'Target hidden height', 'ft')
+  script(type='text/javascript', src='app.js')

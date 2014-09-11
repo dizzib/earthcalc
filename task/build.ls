@@ -1,5 +1,6 @@
 Assert  = require \assert
 Cron    = require \cron
+Fs      = require \fs
 Gaze    = require \gaze
 Globule = require \globule
 _       = require \lodash
@@ -26,6 +27,9 @@ tasks  =
     ixt : \ls
     oxt : \js
     xsub: 'json.js->json'
+  static:
+    cmd : 'cp $IN $OUT'
+    ixt : '+(css|eot|gif|html|jpg|js|json|otf|pem|png|svg|ttf|txt|woff)'
   stylus:
     cmd : "#NMODULES/stylus/bin/stylus -u nib --out $OUT $IN"
     ixt : \styl
@@ -111,14 +115,14 @@ function start-watching tid
     return unless t.isMatch ipath # TODO: remove when gaze fixes issue 104
     log act, ipath
     WFib ->
-      if t.mixn? and (Path.basename ipath).0 is t.mixn then
+      if t.mixn? and (Path.basename ipath).0 is t.mixn
         try
           compile-batch tid
         catch e then G.err e
       else switch act
         | \added, \changed, \renamed
           try opath = W4 compile, t, ipath
-          catch e then return G.err e
+          catch e then return G.alert e
           G.ok opath
         | \deleted
           try W4m Fs, \unlink, opath = get-opath t, ipath
