@@ -24,6 +24,7 @@ function get-horizon-distance h0
   theta / RADIANS-PER-MILE
 
 function get-target-hidden-height d0, d1
+  return 0 if d0 < d1
   rads = (d1 - d0) * RADIANS-PER-MILE
   r-vert = EARTH-RADIUS * Math.cos rads
   (EARTH-RADIUS - r-vert) * FEET-PER-MILE
