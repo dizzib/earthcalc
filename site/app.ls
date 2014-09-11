@@ -38,4 +38,4 @@ function ft-to-miles
   it / FEET-PER-MILE
 
 function get-val
-  parseInt($ "##it" .val!)
+  parseFloat($ "##it" .val!)

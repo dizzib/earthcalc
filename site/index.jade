@@ -2,19 +2,46 @@ include ./lib/_form
 
 html
   head
-    title Earth Calculator
+    title Earth Curve Calculator
     link(rel='stylesheet', href='lib-3p/bootstrap-3.2.0-dist/css/bootstrap.min.css')
     link(rel='stylesheet', href='lib-3p/bootstrap-3.2.0-dist/css/bootstrap-theme.min.css')
     link(rel='stylesheet', href='lib/form.css')
     script(type='text/javascript', src='lib-3p/zepto.min.js')
 body
-  h1 Earth Calculator
+  h1 Earth Curve Calculator
   form.form-horizontal
-    +field-text('txtEyeHeight', 10, 'Eye height', 'ft')
-    +field-text('txtTargetDist', 30, 'Target distance', 'miles')
+    +field-text('txtEyeHeight', 10, 'h0 = Eye height', 'ft')
+    +field-text('txtTargetDist', 30, 'd0 = Target distance', 'miles')
     .col-sm-offset-3
       button(type='button', id='btnCalculate').btn.btn-primary Calculate
   form.form-horizontal.well
-    +field-static('horizonDist', 'Horizon distance', 'miles')
-    +field-static('targetHiddenHeight', 'Target hidden height', 'ft')
+    +field-static('horizonDist', 'd1 = Horizon distance', 'miles')
+    +field-static('targetHiddenHeight', 'h1 = Target hidden height', 'ft')
+  svg(viewBox='0 0 800 800')
+    // earth
+    rect(x='0', y='249', width='800', height='550', fill='#ddd')
+    path(d='M 0 250 q 400 -100 800 0', stroke='green', stroke-width='1', fill='#ddd')
+    // horizon
+    line(x1='0', y1='200', x2='800', y2='200', stroke='#000', stroke-dasharray='5,5')
+    line(x1='400', y1='200', x2='400', y2='800', stroke='#ccc')
+    path(d='M 400 150 L 400 190 L 410 180 M 400 190 L 390 180', stroke='#000', fill='none')
+    text(x='380', y='140') Horizon
+    // eye
+    line(x1='150', y1='0', x2='150', y2='800', stroke='#ccc')
+    path(d='M 150 219 L 150 200 L 145 205 M 150 200 L 155 205',
+      stroke='blue', stroke-width='2', fill='none')
+    text(x='130', y='215') h0
+    // target
+    path(d='M 750 239 L 750 200 L 745 205 M 750 200 L 755 205',
+      stroke='red', stroke-width='2', fill='none')
+    line(x1='750', y1='200', x2='750', y2='0', stroke='#ccc')
+    text(x='755', y='225') h1
+    // d0
+    line(x1='150', y1='75', x2='750', y2='75', stroke='#888')
+    path(d='M 155 70 L 150 75 L 155 80  M 745 70 L 750 75 L 745 80', stroke='#888', fill='none')
+    text(x='445', y='65') d0
+    // d1
+    line(x1='150', y1='300', x2='400', y2='300', stroke='#888')
+    path(d='M 155 295 L 150 300 L 155 305  M 395 295 L 400 300 L 395 305', stroke='#888', fill='none')
+    text(x='270', y='290') d1
   script(type='text/javascript', src='app.js')
