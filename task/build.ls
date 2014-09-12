@@ -18,7 +18,7 @@ const NMODULES = './node_modules'
 pruner = new Cron.CronJob cronTime:'*/10 * * * *', onTick:prune-empty-dirs
 tasks  =
   jade:
-    cmd : "#NMODULES/jade/bin/jade --out $OUT $IN"
+    cmd : "node #NMODULES/jade/bin/jade.js --out $OUT $IN"
     ixt : \jade
     oxt : \html
     mixn: \_

@@ -4,10 +4,11 @@ html
   head
     title Earth Curve Calculator
     link(rel='stylesheet', href='lib-3p/bootstrap-3.2.0-dist/css/bootstrap.min.css')
-    link(rel='stylesheet', href='lib/form.css')
+    link(rel='stylesheet', href='app.css')
     script(type='text/javascript', src='lib-3p/zepto.min.js')
 body
   h1 Earth Curve Calculator
+  p This app calculates how much a distant object is obscured by the earth's curvature (h1).
   form.form-horizontal.well
     +field-text('h0', 10, 'h0 = Eye height', 'ft')
     +field-text('d0', 30, 'd0 = Target distance', 'miles')
