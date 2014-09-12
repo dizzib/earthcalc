@@ -37,7 +37,7 @@ calculate!
 
 $ \input .on \keypress, -> calculate! if (it.key or it.keyIdentifier) is \Enter
 $ \#btnCalculate .on \click, calculate
-$ '#metric,#imperial' .on \click, -> switch-units it.toElement.value
+$ '#metric,#imperial' .on \click, -> switch-units it.target.value
 
 ## helpers
 
