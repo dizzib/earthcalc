@@ -16,8 +16,8 @@ mixin field-radio(name, value)
     input(type='radio', id=value, name=name, value=value)
     block
 
-mixin field-static(name, label, label_2)
-  +field-label(name, label, label_2)
+mixin field-static(name, label)
+  +field-label(name, label)
     .col-sm-8
       p(id=name).form-control-static
 
