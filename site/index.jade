@@ -9,14 +9,22 @@ html
 body
   h1 Earth Curve Calculator
   p This app calculates how much a distant object is obscured by the earth's curvature (h1).
+  p This calculation is good as long as d0 and d1 are small compared to the earth's circumference of 40,000km.
   form.form-horizontal.well
-    +field-text('h0', 10, 'h0 = Eye height', 'ft')
-    +field-text('d0', 30, 'd0 = Target distance', 'miles')
+    +field-label('radUnits', 'Units')
+      +field-radio('radUnits', 'metric') Metric
+      +field-radio('radUnits', 'imperial') Imperial
+    .unit-minor
+      +field-text('h0', 10, 'h0 = Eye height', 'ft')
+    .unit-major
+      +field-text('d0', 30, 'd0 = Target distance', 'miles')
     .col-sm-offset-3
       button(type='button', id='btnCalculate').btn.btn-primary Calculate
   form.form-horizontal.well
-    +field-static('d1', 'd1 = Horizon distance', 'miles')
-    +field-static('h1', 'h1 = Target hidden height', 'ft')
+    .unit-major
+      +field-static('d1', 'd1 = Horizon distance', 'miles')
+    .unit-minor
+      +field-static('h1', 'h1 = Target hidden height', 'ft')
   svg(viewBox='0 0 800 800')
     // earth
     rect(x='0', y='249', width='800', height='550', fill='#ddd')
