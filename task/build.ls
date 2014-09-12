@@ -4,6 +4,7 @@ Fs      = require \fs
 Gaze    = require \gaze
 Globule = require \globule
 _       = require \lodash
+Md      = require \marked
 Path    = require \path
 Shell   = require \shelljs/global
 WFib    = require \wait.for .launchFiber
@@ -27,6 +28,10 @@ tasks  =
     ixt : \ls
     oxt : \js
     xsub: 'json.js->json'
+  markdown:
+    cmd : markdown
+    ixt : \md
+    oxt : \html
   static:
     cmd : 'cp $IN $OUT'
     ixt : '+(css|eot|gif|html|jpg|js|json|otf|pem|png|svg|ttf|txt|woff)'
@@ -96,6 +101,11 @@ function get-opath t, ipath
   p = ipath.replace("#{Dir.ROOT}/", '').replace t.ixt, t.oxt
   return p unless (xsub = t.xsub?split '->')?
   p.replace xsub.0, xsub.1
+
+function markdown ipath, opath, cb
+  e, html <- Md cat ipath
+  html.to opath unless e?
+  cb e
 
 function prune-empty-dirs
   unless pwd! is Dir.BUILD then return log 'bypass prune-empty-dirs'
