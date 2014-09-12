@@ -12,16 +12,16 @@ body
       +field-radio('radUnits', 'metric') Metric
       +field-radio('radUnits', 'imperial') Imperial
     .unit-minor
-      +field-text('h0', 10, 'h0 = Eye height', 'ft')
+      +field-text('h0', 10, 'h0 = Eye height')
     .unit-major
-      +field-text('d0', 30, 'd0 = Target distance', 'miles')
+      +field-text('d0', 30, 'd0 = Target distance')
     .col-sm-offset-3
       button(type='button', id='btnCalculate').btn.btn-primary Calculate
   form.form-horizontal.well
     .unit-major
-      +field-static('d1', 'd1 = Horizon distance', 'miles')
+      +field-static('d1', 'd1 = Horizon distance')
     .unit-minor
-      +field-static('h1', 'h1 = Target hidden height', 'ft')
+      +field-static('h1', 'h1 = Target hidden height')
   svg(viewBox='0 0 800 800')
     // earth
     rect(x='0', y='249', width='800', height='550', fill='#ddd')

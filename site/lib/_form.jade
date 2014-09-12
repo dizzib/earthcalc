@@ -1,4 +1,4 @@
-mixin field-label(name, label, label_2)
+mixin field-label(name, label)
   - var label = label || name
   .form-group
     label(for=name).control-label.col-sm-3 #{label}
@@ -6,9 +6,9 @@ mixin field-label(name, label, label_2)
       block
     label.control-label.unit
 
-mixin field-input(type, name, value, label, label_2, placeholder)
-  +field-label(name, label, label_2)
-    input(type=type, id=name, name=name, value=value, placeholder=placeholder).form-control
+mixin field-input(type, name, value, label)
+  +field-label(name, label)
+    input(type=type, id=name, name=name, value=value).form-control
     block
 
 mixin field-radio(name, value)
@@ -21,6 +21,6 @@ mixin field-static(name, label, label_2)
     .col-sm-8
       p(id=name).form-control-static
 
-mixin field-text(name, value, label, label_2, placeholder)
-  +field-input('text', name, value, label, label_2, placeholder)
+mixin field-text(name, value, label)
+  +field-input('text', name, value, label)
     block
