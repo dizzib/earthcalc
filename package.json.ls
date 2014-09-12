@@ -12,6 +12,7 @@ devDependencies:
   jade      : \~1.6.0
   LiveScript: \~1.2.0
   lodash    : \~2.4.1
+  marked    : \~0.3.1
   nib       : \~0.9.0
   shelljs   : \~0.2.6
   stylus    : \~0.31.0
