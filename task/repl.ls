@@ -19,9 +19,9 @@ config.fatal = true
 build-tests-enabled = true
 
 const COMMANDS =
-  * cmd:'h    ' lev:0 desc:'help  - show commands'      fn:show-help
-  * cmd:'b.fc ' lev:0 desc:'build - files compile'      fn:Build.compile-files
-  * cmd:'b.nr ' lev:0 desc:'build - npm refresh'        fn:Build.refresh-modules
+  * cmd:'h    ' lev:0 desc:'help  - show commands' fn:show-help
+  * cmd:'b.all' lev:0 desc:'build - all'           fn:Build.all
+  * cmd:'b.nr ' lev:0 desc:'build - npm refresh'   fn:Build.refresh-modules
 
 const CHALKS = [Chalk.stripColor, Chalk.yellow, Chalk.red]
 for c in COMMANDS

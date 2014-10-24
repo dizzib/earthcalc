@@ -2,10 +2,12 @@
 
 BUILD="_build"
 
-lsc -o $BUILD/task -cw task/*.ls &
-lsc -o $BUILD -cw *.json.ls &
+lsc -o $BUILD/task -c task/*.ls
+lsc -o $BUILD -c package.json.ls
 
-while read
-do
-  :
-done
+# npm dependencies
+cd $BUILD
+npm install
+npm prune
+
+echo "Done!"

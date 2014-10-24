@@ -30,7 +30,7 @@ tasks  =
     xsub: 'json.js->json'
   markdown:
     cmd : markdown
-    ixt : \md
+    ixt : \markdown
     oxt : \html
   static:
     cmd : 'cp $IN $OUT'
@@ -42,7 +42,7 @@ tasks  =
     mixn: \_
 
 module.exports = me =
-  compile-files: ->
+  all: ->
     try
       for tid of tasks then compile-batch tid
     catch e then G.err e
