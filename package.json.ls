@@ -1,5 +1,5 @@
 name   : \earthcalc
-version: \0.0.1
+version: \0.1.0
 private: true
 engines:
   npm : '>=1.0.x'
