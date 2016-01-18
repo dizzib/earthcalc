@@ -1,3 +1,7 @@
+# calculation method
+
+![calculation method](./calc-method.png)
+
 # build and run locally
 
 ## install global dependencies
