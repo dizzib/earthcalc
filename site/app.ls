@@ -3,10 +3,9 @@
 # 'illegal invocation' errors, since console.log expects 'this' to be console.
 window.log = -> console.log ...&
 
-const FEET-PER-METRE   = 3.2808
-const MILES-PER-KM     = 0.621371192237
-const EARTH-RADIUS     = 6371km
-const RADIANS-PER-KM   = 1 / EARTH-RADIUS # the angle subtended at earth's center per km along circumference
+const FEET-PER-METRE  = 3.2808
+const MILES-PER-KM    = 0.621371192237
+const EARTH-RADIUS-KM = 6371km
 
 # 'factor' is used to convert to/from metric units for the calculation
 # 'switch' is used to flip between metric and imperial.
@@ -35,35 +34,31 @@ var units # currently selected units
 initialise-units \imperial
 calculate!
 
-$ \input .on \keypress, -> calculate! if (it.key or it.keyIdentifier) is \Enter
-$ \#btnCalculate .on \click, calculate
-$ '#metric,#imperial' .on \click, -> switch-units it.target.value
+$ \input .on \keypress -> calculate! if (it.key or it.keyIdentifier) is \Enter
+$ \#btnCalculate .on \click calculate
+$ '#metric,#imperial' .on \click -> switch-units it.target.value
 
 ## helpers
 
 function calculate
   h0    = get-val \h0
   d0    = get-val \d0
-  h0_m  = h0 * units.minor.factor
+  h0_km = h0 * units.minor.factor * 0.001km_per_m
   d0_km = d0 * units.major.factor
-  d1_km = get-horizon-distance_km h0_m
-  h1_m  = get-target-hidden-height_m d0_km, d1_km
+  d1_km = get-horizon-distance_km h0_km
+  h1_m  = get-target-hidden-height_km(d0_km - d1_km) * 1000m_per_km
   d1    = d1_km / units.major.factor
   h1    = h1_m  / units.minor.factor
 
   $ \#d1 .text d1
   $ \#h1 .text h1
 
-function get-horizon-distance_km h0_m
-  r-vert = EARTH-RADIUS - h0_m * 0.001km_per_m
-  theta  = Math.acos r-vert / EARTH-RADIUS
-  theta / RADIANS-PER-KM
+function get-horizon-distance_km h0_km
+  Math.sqrt(h0_km^2 + 2*EARTH-RADIUS-KM*h0_km)
 
-function get-target-hidden-height_m d0_km, d1_km
-  return 0 if d0_km < d1_km
-  rads = (d1_km - d0_km) * RADIANS-PER-KM
-  r-vert = EARTH-RADIUS * Math.cos rads
-  (EARTH-RADIUS - r-vert) * 1000m_per_km
+function get-target-hidden-height_km d2_km
+  return 0 if d2_km < 0
+  Math.sqrt(d2_km^2 + EARTH-RADIUS-KM^2) - EARTH-RADIUS-KM
 
 function get-val
   parseFloat($ "##it" .val!)
@@ -74,7 +69,7 @@ function show-units
 
 function initialise-units
   units := UNITS[it]
-  $ "input##it" .prop \checked, true
+  $ "input##it" .prop \checked true
   show-units units
 
 function switch-units
