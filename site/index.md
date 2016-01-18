@@ -1,8 +1,11 @@
 # Earth Curve Calculator
 
-This app calculates how much a distant object is obscured by the earth's curvature (h1) and
-is good as long as d0 and d1 are small compared to the earth's circumference of 40,000km.
+This app calculates how much a distant object is obscured by the earth's curvature,
+and makes the following assumptions:
 
-The [source code is freely availble at GitHub.com][source-code].
+* the Earth is a convex sphere of radius 6371km
+* light travels in straight lines
+
+The source code and calculation method are [available here on GitHub.com][source-code]
 
 [source-code]: https://github.com/dizzib/earthcalc
