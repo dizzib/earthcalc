@@ -1,10 +1,11 @@
-name      : \earthcalc
-version   : \0.2.1
-private   : true
-homepage  : \https://github.com/dizzib/earthcalc
-bugs      : \https://github.com/dizzib/earthcalc/issues
-license:  : \MIT
-author    : \dizzib
+name       : \earthcalc
+version    : \0.2.1
+description: "Calculates how much a distant object is obscured by the earth's curvature"
+private    : true
+homepage   : \https://github.com/dizzib/earthcalc
+bugs       : \https://github.com/dizzib/earthcalc/issues
+license:   : \MIT
+author     : \dizzib
 repository:
   type: \git
   url : \https://github.com/dizzib/earthcalc
