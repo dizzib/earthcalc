@@ -21,5 +21,5 @@ You should now be able to point your browser at `_build/site/index.html`
 [MIT](./LICENSE)
 
 [LiveScript]: http://livescript.net/#installation
-[node.js]: http://nodejs.org/download/
+[node.js]: http://nodejs.org
 [repo]: https://github.com/dizzib/earthcalc
