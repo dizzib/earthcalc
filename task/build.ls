@@ -4,7 +4,6 @@ Cron    = require \cron
 Emitter = require \events .EventEmitter
 Fs      = require \fs
 _       = require \lodash
-Md      = require \marked
 Path    = require \path
 Shell   = require \shelljs/global
 WFib    = require \wait.for .launchFiber
@@ -16,7 +15,7 @@ G       = require \./growl
 
 const NMODULES = './node_modules'
 
-pruner = new Cron.CronJob cronTime:'*/10 * * * *', onTick:prune-empty-dirs
+pruner = new Cron.CronJob cronTime:'*/10 * * * *' onTick:prune-empty-dirs
 tasks  =
   jade:
     cmd : "node #NMODULES/.bin/jade --out $OUT $IN"
@@ -28,10 +27,6 @@ tasks  =
     ixt : \ls
     oxt : \js
     xsub: 'json.js->json'
-  markdown:
-    cmd : markdown
-    ixt : \markdown
-    oxt : \html
   static:
     cmd : 'cp $IN $OUT'
     ixt : '+(css|eot|gif|html|jpg|js|json|otf|pem|png|svg|ttf|txt|woff)'
@@ -97,17 +92,12 @@ function compile-batch tid
 
 function copy-package-json
   # ensure package.json resides alongside /api and /app
-  cp \-f, './package.json', './site'
+  cp \-f './package.json' './site'
 
 function get-opath t, ipath
   p = ipath.replace("#{Dir.ROOT}/", '').replace t.ixt, t.oxt
   return p unless (xsub = t.xsub?split '->')?
   p.replace xsub.0, xsub.1
-
-function markdown ipath, opath, cb
-  e, html <- Md cat ipath
-  html.to opath unless e?
-  cb e
 
 function prune-empty-dirs
   unless pwd! is Dir.BUILD then return log 'bypass prune-empty-dirs'
