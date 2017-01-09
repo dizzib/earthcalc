@@ -23,7 +23,7 @@ tasks  =
     oxt : \html
     mixn: \_
   livescript:
-    cmd   : "#BIN/lsc --output $OUT $IN"
+    cmd : "#BIN/lsc --output $OUT $IN"
     ixt : \ls
     oxt : \js
     xsub: 'json.js->json'
@@ -116,14 +116,14 @@ function start-watching tid
     log act, tid, ipath
     <- WFib
     switch act
-      | \add \change
-        try opath = W4 compile, t, ipath
-        catch e then return G.err e
-        G.ok opath
-        me.emit \built
-      | \unlink
-        Assert.equal pwd!, Dir.BUILD
-        try W4m Fs, \unlink opath = get-opath t, ipath
-        catch e then throw e unless e.code is \ENOENT # not found i.e. already deleted
-        G.ok "Delete #opath"
-        me.emit \built
+    | \add \change
+      try opath = W4 compile, t, ipath
+      catch e then return G.err e
+      G.ok opath
+      me.emit \built
+    | \unlink
+      Assert.equal pwd!, Dir.BUILD
+      try W4m Fs, \unlink opath = get-opath t, ipath
+      catch e then throw e unless e.code is \ENOENT # not found i.e. already deleted
+      G.ok "Delete #opath"
+      me.emit \built
