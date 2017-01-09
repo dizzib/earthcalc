@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/dizzib/earthcalc.svg?branch=master)](https://travis-ci.org/dizzib/earthcalc)
+
 # calculation method
 
 ![calculation method](./calc-method.png)
