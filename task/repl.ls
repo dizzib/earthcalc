@@ -30,13 +30,16 @@ for c in COMMANDS
 
 rl = Rl.createInterface input:process.stdin, output:process.stdout
   ..setPrompt "earthcalc >"
-  ..on \line, (cmd) -> WFib ->
+  ..on \line (cmd) -> WFib ->
     switch cmd
     | '' =>
       rl.prompt!
     | _  =>
       for c in COMMANDS when cmd is c.cmd.trim! then try-fn c.fn
       rl.prompt!
+
+Build.on \built ->
+  cp \-f "#{Dir.BUILD}/package.json" Dir.ROOT
 
 Build.start!
 setTimeout show-help, 1000ms
@@ -45,7 +48,7 @@ setTimeout show-help, 1000ms
 
 function show-help
   bt = if build-tests-enabled then Chalk.bold.green \yes else Chalk.bold.cyan \no
-  for c in COMMANDS when !c.disabled then log c.display.replace \$BT, bt
+  for c in COMMANDS when !c.disabled then log c.display.replace \$BT bt
   rl.prompt!
 
 function try-fn

@@ -13,25 +13,25 @@ Dirname = require \./constants .dirname
 Dir     = require \./constants .dir
 G       = require \./growl
 
-const NMODULES = './node_modules'
+const BIN = "#{Dir.ROOT}/node_modules/.bin"
 
 pruner = new Cron.CronJob cronTime:'*/10 * * * *' onTick:prune-empty-dirs
 tasks  =
   jade:
-    cmd : "node #NMODULES/.bin/jade --out $OUT $IN"
+    cmd : "#BIN/jade --out $OUT $IN"
     ixt : \jade
     oxt : \html
     mixn: \_
   livescript:
-    cmd : "#NMODULES/.bin/livescript --output $OUT $IN"
+    cmd   : "#BIN/livescript --output $OUT $IN"
     ixt : \ls
     oxt : \js
     xsub: 'json.js->json'
   static:
-    cmd : 'cp $IN $OUT'
-    ixt : '+(css|eot|gif|html|jpg|js|json|otf|pem|png|svg|ttf|txt|woff)'
+    cmd : 'cp --target-directory $OUT $IN'
+    ixt : '{css,eot,gif,html,jpg,js,mak,otf,pem,png,svg,ttf,txt,woff,woff2}'
   stylus:
-    cmd : "#NMODULES/.bin/stylus -u nib --out $OUT $IN"
+    cmd : "#BIN/stylus -u nib --out $OUT $IN"
     ixt : \styl
     oxt : \css
     mixn: \_
@@ -89,10 +89,6 @@ function compile-batch tid
   G.say "compiling #info..."
   for f in files then W4 compile, t, Path.relative Dir.ROOT, f
   G.ok "...done #info!"
-
-function copy-package-json
-  # ensure package.json resides alongside /api and /app
-  cp \-f './package.json' './site'
 
 function get-opath t, ipath
   p = ipath.replace("#{Dir.ROOT}/", '').replace t.ixt, t.oxt

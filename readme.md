@@ -2,23 +2,15 @@
 
 ![calculation method](./calc-method.png)
 
-# build and run locally
+# developer build and run
 
-## install global dependencies
+With [node.js] installed on the target box:
 
-* [node.js][nodejs]
-
-* [LiveScript][LiveScript]
-
-## clone and bootstrap project
-
-    $ git clone git@github.com:dizzib/earthcalc.git
-    $ ./task/bootstrap      # compile task runner and install npm dependencies
-
-## build and run
-
-    $ node _build/task/repl # launch the task runner
-    earthcalc > b.all       # build everything
+    $ git clone --branch=dev https://github.com/dizzib/earthcalc.git
+    $ cd earthcalc
+    $ npm install       # install project dependencies
+    $ npm start         # start the task runner
+    earthcalc > b.all   # build everything
 
 You should now be able to point your browser at `_build/site/index.html`
 
@@ -27,5 +19,5 @@ You should now be able to point your browser at `_build/site/index.html`
 [MIT](./LICENSE)
 
 [LiveScript]: http://livescript.net/#installation
-[nodejs]: http://nodejs.org/download/
+[node.js]: http://nodejs.org/download/
 [repo]: https://github.com/dizzib/earthcalc

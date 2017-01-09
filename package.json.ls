@@ -1,7 +1,17 @@
-name   : \earthcalc
-version: \0.2.1
-private: true
+name      : \earthcalc
+version   : \0.2.1
+private   : true
+homepage  : \https://github.com/dizzib/earthcalc
+bugs      : \https://github.com/dizzib/earthcalc/issues
+license:  : \MIT
+author    : \dizzib
+repository:
+  type: \git
+  url : \https://github.com/dizzib/earthcalc
+scripts:
+  start: './task/bootstrap && node ./_build/task/repl'
 engines:
+  node: '>=0.10.x'
   npm : '>=1.0.x'
 devDependencies:
   chalk     : \~0.4.0

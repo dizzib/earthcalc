@@ -1,13 +1,4 @@
 #!/bin/bash
 
-BUILD="_build"
-
-lsc -o $BUILD/task -c task/*.ls
-lsc -o $BUILD -c package.json.ls
-
-# npm dependencies
-cd $BUILD
-npm install
-npm prune
-
-echo "Done!"
+rm -rf ./_build
+./node_modules/.bin/lsc -o ./_build/task -c ./task/*.ls
