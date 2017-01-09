@@ -19,7 +19,7 @@ devDependencies:
   cron      : \~1.0.3
   growly    : \~1.3.0
   jade      : \~1.6.0
-  LiveScript: \~1.2.0
+  livescript: \~1.5.0
   lodash    : \~2.4.1
   marked    : \~0.3.1
   nib       : \~0.9.0

@@ -23,7 +23,7 @@ tasks  =
     oxt : \html
     mixn: \_
   livescript:
-    cmd   : "#BIN/livescript --output $OUT $IN"
+    cmd   : "#BIN/lsc --output $OUT $IN"
     ixt : \ls
     oxt : \js
     xsub: 'json.js->json'
