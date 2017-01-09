@@ -11,7 +11,7 @@ With [node.js] installed on the target box:
     $ git clone --branch=dev https://github.com/dizzib/earthcalc.git
     $ cd earthcalc
     $ npm install       # install project dependencies
-    $ npm start         # start the task runner
+    $ npm start         # build and start the task runner
     earthcalc > b.all   # build everything
 
 You should now be able to point your browser at `_build/site/index.html`
