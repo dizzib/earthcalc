@@ -7,7 +7,7 @@ devDependencies:
   chalk     : \~0.4.0
   chokidar  : \~1.6.1
   cron      : \~1.0.3
-  gntp      : \~0.1.1
+  growly    : \~1.3.0
   jade      : \~1.6.0
   LiveScript: \~1.2.0
   lodash    : \~2.4.1

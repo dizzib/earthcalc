@@ -11,6 +11,7 @@ const DIR-SITE  = "#DIR-ROOT/#SITE"
 const DIR-TASK  = "#DIR-ROOT/#TASK"
 
 module.exports =
+  APPNAME: \earthcalc
   dirname:
     SITE : SITE
     TASK : TASK
