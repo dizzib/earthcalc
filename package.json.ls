@@ -10,6 +10,7 @@ repository:
   url : \https://github.com/dizzib/earthcalc
 scripts:
   start: './task/bootstrap && node ./_build/task/repl'
+  test : './task/bootstrap && node ./_build/task/npm-test'
 engines:
   node: '>=0.10.x'
   npm : '>=1.0.x'
