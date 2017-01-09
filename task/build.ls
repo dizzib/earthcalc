@@ -81,10 +81,9 @@ function compile t, ipath, cb
 
 function compile-batch tid
   t = tasks[tid]
-  w = t.watcher._watched
-  # https://github.com/paulmillr/chokidar/issues/281
-  files = [ p-abs for p, v of w for f of v._items
-    when test \-f p-abs = Path.join p, f ]
+  w = t.watcher.getWatched!
+  files = [ f for path, names of w for name in names
+    when test \-f f = Path.resolve Dir.ROOT, path, name ]
   info = "#{files.length} #tid files"
   G.say "compiling #info..."
   for f in files then W4 compile, t, Path.relative Dir.ROOT, f
