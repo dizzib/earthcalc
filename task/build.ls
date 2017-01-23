@@ -110,12 +110,17 @@ function start-watching tid
     ignoreInitial:true
     ignored:t.ignore
     persistent: false
-  w.on \all process # _.debounce process, 500ms, leading:true trailing:false
+  w.on \all _.debounce process, 500ms, leading:true trailing:false
 
   function process act, ipath
     log act, tid, ipath
     <- WFib
-    switch act
+    if (Path.basename ipath).0 is t?mixn
+      try
+        compile-batch tid
+        me.emit \built
+      catch e then G.err e
+    else switch act
     | \add \change
       try opath = W4 compile, t, ipath
       catch e then return G.err e
