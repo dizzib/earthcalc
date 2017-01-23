@@ -4,20 +4,21 @@ html
     title Earth Curve Calculator
     link(rel='stylesheet', href='lib-3p/bootstrap-3.2.0-dist/css/bootstrap.min.css')
     link(rel='stylesheet', href='app.css')
-    script(src='lib-3p/zepto.min.js')
+    script(src='lib-3p/jquery-3.1.1.slim.min.js')
+    script(src='lib-3p/bootstrap-validator.min.js')
     script(src='lib-3p/query-string.js')
 body
   include:md index.md
-  form.form-horizontal.well
+  form(data-toggle='validator').form-horizontal.well
     +field-label('radUnits', 'Units')
       +field-radio('radUnits', 'metric') Metric
       +field-radio('radUnits', 'imperial') Imperial
     .unit-minor
-      +field-text('h0', 'h0 = Eye height')
+      +field-text-length('h0', 'h0 = Eye height')
     .unit-major
-      +field-text('d0', 'd0 = Target distance')
+      +field-text-length('d0', 'd0 = Target distance')
     .col-sm-offset-3
-      button(type='button', id='btnCalculate').btn.btn-primary Calculate
+      button(type='submit', id='btnCalculate').btn.btn-primary Calculate
   form.form-horizontal.well
     .unit-major
       +field-static('d1', 'd1 = Horizon distance')
