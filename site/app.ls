@@ -51,8 +51,8 @@ function calculate
   d1    = d1_km / unit.major.factor
   h1    = h1_m  / unit.minor.factor
 
-  $ \#d1 .text d1
-  $ \#h1 .text h1
+  $ \#d1 .text d1.toFixed 6
+  $ \#h1 .text h1.toFixed 4
 
   qs = queryString.stringify d0:d0, h0:h0, unit:unit-id
   history.replaceState void "" "?#qs"
