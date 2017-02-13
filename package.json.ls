@@ -1,5 +1,5 @@
 name       : \earthcalc
-version    : \0.2.2
+version    : \0.2.3
 description: "Calculates how much a distant object is obscured by the earth's curvature"
 private    : true
 homepage   : \https://github.com/dizzib/earthcalc
