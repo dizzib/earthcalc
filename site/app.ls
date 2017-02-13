@@ -38,6 +38,10 @@ $ \input .on \keypress -> calculate! if (it.key or it.keyIdentifier) is \Enter
 $ \#btnCalculate .on \click calculate
 $ '#metric,#imperial' .on \click -> switch-unit it.target.value
 
+# the validator works on the submit button but we don't want to
+# submit the form, otherwise the query string gets overwritten
+$ \form .on \submit -> it.preventDefault!
+
 ## helpers
 
 function calculate
